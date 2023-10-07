@@ -8,6 +8,8 @@ The function should use a regex to replace occurrences of certain field values
 import logging
 import re
 from typing import List
+import os
+import mysql
 
 
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
@@ -67,3 +69,19 @@ def get_logger() -> logging.Logger:
     logger.addHandler(handler)
 
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    '''
+    Database credentials should NEVER be stored in code or checked into version
+    control. One secure option is to store them as environment variable on the
+    application server.
+    '''
+    username = os.getenv('PERSONAL_DATA_DB_USERNAME') or 'root'
+    password = os.getenv('PERSONAL_DATA_DB_PASSWORD') or ''
+    host = os.getenv('PERSONAL_DATA_DB_HOST') or 'localhost'
+    database = os.getenv('PERSONAL_DATA_DB_NAME')
+    connector = mysql.connector.connect(user=username, password=password,
+                                        host=host, database=database)
+
+    return connector
