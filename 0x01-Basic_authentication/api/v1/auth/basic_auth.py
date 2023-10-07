@@ -46,7 +46,7 @@ class BasicAuth(Auth):
                 return None
 
     def extract_user_credentials(
-            self, decoded_base64_authorization_header: str) -> (str, str):
+            self, decoded_base64_authorization_header: str) -> Tuple[str, str]:
         '''
         Method to extract the user credentials from the base64 decoded value
         '''
@@ -60,3 +60,5 @@ class BasicAuth(Auth):
                 password = field_match.group('password')
 
                 return user, password
+        
+        return None, None
