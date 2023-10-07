@@ -20,7 +20,7 @@ class BasicAuth(Auth):
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
         if type(authorization_header) == str:
-            pattern = r'Basic (?P<token>,+)'
+            pattern = r'Basic (?P<token>.+)'
             field_match = re.fullmatch(pattern, authorization_header.strip())
 
             if field_match is not None:
