@@ -60,5 +60,5 @@ class BasicAuth(Auth):
                 password = field_match.group('password')
 
                 return user, password
-        
+
         return None, None
