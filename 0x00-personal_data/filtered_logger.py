@@ -77,11 +77,11 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     control. One secure option is to store them as environment variable on the
     application server.
     '''
-    username = os.getenv('PERSONAL_DATA_DB_USERNAME') or "root"
-    password = os.getenv('PERSONAL_DATA_DB_PASSWORD') or ""
+    user = os.getenv('PERSONAL_DATA_DB_USERNAME') or "root"
+    passwd = os.getenv('PERSONAL_DATA_DB_PASSWORD') or ""
     host = os.getenv('PERSONAL_DATA_DB_HOST') or "localhost"
     db_name = os.getenv('PERSONAL_DATA_DB_NAME')
-    connector = mysql.connector.connect(user=username, password=password,
-                                        host=host, database=db_name)
+    conn = mysql.connector.connect(user=user, password=passwd, host=host,
+                                   database=db_name)
 
-    return connector
+    return conn
