@@ -21,20 +21,20 @@ def login() -> Tuple[str, int]:
 
     if email is None or len(email.strip()) == 0:
         return jsonify({"error": "email missing"}), 400
-    
+
     password = request.form.get('password')
 
     if password is None or len(password.strip()) == 0:
         return jsonify({"error": "password missing"}), 400
-    
+
     try:
         users = User.search({'email': email})
     except Exception:
         return jsonify(not_found_res), 404
-    
+
     if len(users) <= 0:
         return jsonify(not_found_res), 404
-    
+
     if users[0].is_valid_password(password):
         from api.v1.app import auth
         sessiond_id = auth.create_session(getattr(users[0], 'id'))
