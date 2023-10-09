@@ -48,7 +48,7 @@ class Auth:
         Identify current user from request
         '''
         return None
-    
+
     def session_cookie(self, request=None) -> str:
         '''
         Gets the value of a cookie
