@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+
 '''
 Define class SessionDButh
 '''
+
 from .session_exp_auth import SessionExpAuth
 from models.user_session import UserSession
 
